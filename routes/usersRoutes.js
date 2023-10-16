@@ -33,15 +33,9 @@ function validateToken(req, res, next) {
 
 
 
-
-router.get('/', (req, res) => {
-    res.status(200).json({
-        message: 'probandoo la ruta desde usuario'
-    });
-});
-
 router.post('/', userController.addUser);
 router.post('/auth', userController.auth);
+router.get('/', validateToken, userController.getAllUsers);
 
 module.exports = router;
 

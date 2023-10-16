@@ -67,3 +67,13 @@ exports.auth = async (req, res) => {
     //envío la respuesta:
     res.status(200).json({message: 'Autenticación exitosa', token});
 };
+
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await userModel.find();
+        res.status(200).json(users);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+};
