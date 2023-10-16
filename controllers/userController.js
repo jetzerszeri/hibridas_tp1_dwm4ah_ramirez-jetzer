@@ -77,3 +77,19 @@ exports.getAllUsers = async (req, res) => {
         res.status(500).json({message: 'Hubo un error en el servidor'});
     }
 };
+
+exports.getUserById = async (req, res) => {
+    try{
+        const id = req.params.userId;
+        const user = await userModel.findById(id);
+
+        if (!user){
+            return res.status(404).json({message: 'No se encontró ningún usuario con ese id'});
+        }
+
+        res.status(200).json(user);
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+}
