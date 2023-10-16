@@ -38,6 +38,7 @@ router.post('/auth', userController.auth);
 router.get('/', validateToken, userController.getAllUsers);
 router.get('/:userId', validateToken, userController.getUserById);
 router.put('/:userId', validateToken, userController.updateUser);
+router.delete('/:userId', validateToken, userController.deleteUser);
 
 
 
