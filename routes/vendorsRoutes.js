@@ -30,6 +30,8 @@ function validateToken(req, res, next) {
 };
 
 
+//aquí van las rutas...
+
 
 
 
