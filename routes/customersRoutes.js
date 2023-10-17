@@ -33,7 +33,7 @@ function validateToken(req, res, next) {
 router.post('/', validateToken, customerController.addCustomer);
 router.get('/', validateToken, customerController.getAllCustomers);
 router.get('/:customerId', validateToken, customerController.getCustomerById);
-
+router.put('/:customerId', validateToken, customerController.updateCustomer);
 
 
 module.exports = router;
