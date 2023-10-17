@@ -1,0 +1,3 @@
+const customerModel = require('../models/customerModel.js');
+
+//aquí van las funciones del controlador...
