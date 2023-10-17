@@ -52,3 +52,19 @@ exports.getAllContracts = async (req, res) => {
         res.status(500).json({message: 'Hubo un error en el servidor'});
     }
 };
+
+exports.getContractById = async (req, res) => {
+    try{
+        const id = req.params.contractId;
+        const contract = await contractModel.findById(id);
+
+        if(!contract){
+            return res.status(404).json({message: 'No se encontró ningún contract con ese id'});
+        }
+
+        res.status(200).json({contract});
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+}
