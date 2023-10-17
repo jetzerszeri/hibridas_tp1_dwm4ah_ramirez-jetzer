@@ -66,3 +66,38 @@ exports.getVendorById = async (req, res) => {
         res.status(500).json({message: 'Hubo un error en el servidor'});
     }
 };
+
+exports.updateVendor = async (req, res) => {
+    try{
+        const id = req.params.vendorId;
+        const { name, email, phone, hiredDate } = req.body;
+
+        if (!name || name.trim().length === 0 || name.length < 3) {
+            return res.status(400).json({ message: 'Nombre no válido' });
+        };
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !email.match(emailRegex)) {
+            return res.status(400).json({ message: 'Correo electrónico no válido' });
+        };
+
+        if (!phone || isNaN(phone) || phone.length < 6) {
+            return res.status(400).json({ message: 'Teléfono no válido' });
+        }
+
+        const filter = { _id: id };
+        const update = { name, email, phone, hiredDate, updatedAt: Date.now() };
+
+        const result = await vendorModel.findByIdAndUpdate(filter, update);
+
+        if (!result){
+            return res.status(404).json({message: 'No se encontró ningún vendor con ese id'});
+        }
+
+        res.status(200).json({message: 'Vendor actualizado con éxito', vendor: result});
+
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+};
