@@ -40,3 +40,14 @@ exports.addVendor = async (req, res) => {
         res.status(500).json({message: 'Hubo un error en el servidor'});
     }
 };
+
+exports.getAllVendors = async (req, res) => {
+    try{
+        const vendors = await vendorModel.find();
+        res.status(200).json({vendors});
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+};
+

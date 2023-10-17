@@ -33,6 +33,7 @@ function validateToken(req, res, next) {
 //aquí van las rutas...
 
 router.post('/', validateToken, vendorController.addVendor);
+router.get('/', validateToken, vendorController.getAllVendors);
 
 
 module.exports = router;
