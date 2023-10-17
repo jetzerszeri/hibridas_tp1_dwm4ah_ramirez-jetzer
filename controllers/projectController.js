@@ -116,3 +116,20 @@ exports.updateProject = async (req, res) => {
         res.status(500).json({message: 'Hubo un error en el servidor'});
     }
 }
+
+exports.deleteProject = async (req, res) => {
+    try{
+        const id = req.params.projectId;
+        const result = await projectModel.findByIdAndDelete(id);
+
+        if(!result){
+            return res.status(404).json({message: 'No se encontró ningún project con ese id'});
+        }
+
+        res.status(200).json({message: 'Project eliminado con éxito', result});
+
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+}

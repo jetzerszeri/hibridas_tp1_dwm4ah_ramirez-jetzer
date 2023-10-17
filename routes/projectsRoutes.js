@@ -34,7 +34,7 @@ router.post('/', validateToken, projectController.addProject);
 router.get('/', validateToken, projectController.getAllProjects);
 router.get('/:projectId', validateToken, projectController.getProjectById);
 router.put('/:projectId', validateToken, projectController.updateProject);
-
+router.delete('/:projectId', validateToken, projectController.deleteProject);
 
 
 module.exports = router;
