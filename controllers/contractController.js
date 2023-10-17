@@ -128,3 +128,20 @@ exports.updateContract = async (req, res) => {
         res.status(500).json({message: 'Hubo un error en el servidor'});
     }
 };
+
+exports.deleteContract = async (req, res) => {
+    try{
+        const id = req.params.contractId;
+        const result = await contractModel.findByIdAndDelete(id);
+
+        if(!result){
+            return res.status(404).json({message: 'No se encontró ningún contract con ese id'});
+        }
+
+        res.status(200).json({message: 'Contract eliminado con éxito', result});
+
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+};

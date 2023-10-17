@@ -34,5 +34,6 @@ router.post('/', validateToken, contractController.addContract);
 router.get('/', validateToken, contractController.getAllContracts);
 router.get('/:contractId', validateToken, contractController.getContractById);
 router.put('/:contractId', validateToken, contractController.updateContract);
+router.delete('/:contractId', validateToken, contractController.deleteContract);
 
 module.exports = router;
