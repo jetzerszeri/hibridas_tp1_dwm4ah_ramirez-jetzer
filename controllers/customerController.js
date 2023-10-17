@@ -22,9 +22,20 @@ exports.addCustomer = async (req, res) => {
         await customer.save();
 
         res.status(201).json({ message: 'Customer creado con éxito', customer });
-        
+
     }catch(error){
         console.log(error);
         res.status(500).json({message: 'Hubo un error en el servidor'});
     }
 };
+
+exports.getAllCustomers = async (req, res) => {
+    try{
+        const customers = await customerModel.find();
+        res.status(200).json({customers});
+
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+}
