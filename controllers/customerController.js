@@ -38,4 +38,20 @@ exports.getAllCustomers = async (req, res) => {
         console.log(error);
         res.status(500).json({message: 'Hubo un error en el servidor'});
     }
-}
+};
+
+exports.getCustomerById = async (req, res) => {
+    try{
+        const id = req.params.customerId;
+        const customer = await customerModel.findById(id);
+
+        if(!customer){
+            return res.status(404).json({message: 'No se encontró ningún customer con ese id'});
+        }
+
+        res.status(200).json({customer});
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+};
