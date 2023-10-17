@@ -33,5 +33,6 @@ function validateToken(req, res, next) {
 router.post('/', validateToken, contractController.addContract);
 router.get('/', validateToken, contractController.getAllContracts);
 router.get('/:contractId', validateToken, contractController.getContractById);
+router.put('/:contractId', validateToken, contractController.updateContract);
 
 module.exports = router;
