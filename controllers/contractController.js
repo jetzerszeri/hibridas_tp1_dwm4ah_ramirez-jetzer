@@ -4,3 +4,40 @@ const vendorModel = require('../models/vendorModel.js');
 
 //aquí van las funciones del controlador...
 
+exports.addContract = async (req, res) => {
+    try{
+        const { name, projectId, vendorId, contractNumber, amount, paymentStatus, assigedAt } = req.body;
+
+        if (!name || name.trim().length === 0 || name.length < 3) {
+            return res.status(400).json({ message: 'Nombre no válido' });
+        };
+
+        const project = await projectModel.findById(projectId);
+        if(!project){
+            return res.status(404).json({message: 'No se encontró ningún project con ese id'});
+        }
+
+        const vendor = await vendorModel.findById(vendorId);
+        if(!vendor){
+            return res.status(404).json({message: 'No se encontró ningún vendor con ese id'});
+        }
+
+        const contract = new contractModel({
+            name, 
+            projectId,
+            vendorId,
+            contractNumber,
+            amount,
+            paymentStatus,
+            assigedAt
+        })
+
+        await contract.save();
+
+        res.status(201).json({ message: 'Contract creado con éxito', contract });
+
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+};

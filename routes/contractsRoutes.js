@@ -30,6 +30,6 @@ function validateToken(req, res, next) {
 };
 
 //aquí van las rutas...
-
+router.post('/', validateToken, contractController.addContract);
 
 module.exports = router;
