@@ -36,6 +36,7 @@ router.post('/', validateToken, vendorController.addVendor);
 router.get('/', validateToken, vendorController.getAllVendors);
 router.get('/:vendorId', validateToken, vendorController.getVendorById);
 router.put('/:vendorId', validateToken, vendorController.updateVendor);
+router.delete('/:vendorId', validateToken, vendorController.deleteVendor);
 
 
 module.exports = router;

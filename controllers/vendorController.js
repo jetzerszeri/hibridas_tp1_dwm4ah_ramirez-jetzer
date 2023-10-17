@@ -101,3 +101,19 @@ exports.updateVendor = async (req, res) => {
         res.status(500).json({message: 'Hubo un error en el servidor'});
     }
 };
+
+exports.deleteVendor = async (req, res) => {
+    try{
+        const id = req.params.vendorId;
+        const result = await vendorModel.findByIdAndDelete(id);
+
+        if (!result){
+            return res.status(404).json({message: 'No se encontró ningún vendor con ese id'});
+        }
+
+        res.status(200).json({message: 'Vendor eliminado con éxito', vendor: result});
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+};
