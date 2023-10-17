@@ -13,11 +13,12 @@ const projectSchema = new Schema({
     },
     receivedDate:{
         type: Date,
+        default: Date.now()
     },
     dueDate:{
         type: Date,
     },
-    projectManager: {
+    projectManagerId: {
         type: Schema.Types.ObjectId,
         ref: 'User',
     },

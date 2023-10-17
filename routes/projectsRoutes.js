@@ -30,7 +30,7 @@ function validateToken(req, res, next) {
 };
 
 //aquí van las rutas...
-
+router.post('/', validateToken, projectController.addProject);
 
 
 
