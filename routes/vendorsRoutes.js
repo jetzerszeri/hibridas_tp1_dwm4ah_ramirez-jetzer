@@ -34,6 +34,7 @@ function validateToken(req, res, next) {
 
 router.post('/', validateToken, vendorController.addVendor);
 router.get('/', validateToken, vendorController.getAllVendors);
+router.get('/:vendorId', validateToken, vendorController.getVendorById);
 
 
 module.exports = router;

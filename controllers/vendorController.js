@@ -51,3 +51,18 @@ exports.getAllVendors = async (req, res) => {
     }
 };
 
+exports.getVendorById = async (req, res) => {
+    try{
+        const id = req.params.vendorId;
+        const vendor = await vendorModel.findById(id);
+
+        if(!vendor){
+            return res.status(404).json({message: 'No se encontró ningún vendor con ese id'});
+        }
+
+        res.status(200).json({vendor});
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+};
