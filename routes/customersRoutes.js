@@ -34,6 +34,6 @@ router.post('/', validateToken, customerController.addCustomer);
 router.get('/', validateToken, customerController.getAllCustomers);
 router.get('/:customerId', validateToken, customerController.getCustomerById);
 router.put('/:customerId', validateToken, customerController.updateCustomer);
-
+router.delete('/:customerId', validateToken, customerController.deleteCustomer);
 
 module.exports = router;

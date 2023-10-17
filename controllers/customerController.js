@@ -86,3 +86,20 @@ exports.updateCustomer = async (req, res) => {
         res.status(500).json({message: 'Hubo un error en el servidor'});
     }
 };
+
+exports.deleteCustomer = async (req, res) => {
+    try{
+        const id = req.params.customerId;
+        const result = await customerModel.findByIdAndDelete(id);
+
+        if(!result){
+            return res.status(404).json({message: 'No se encontró ningún customer con ese id'});
+        }
+
+        res.status(200).json({message: 'Customer eliminado con éxito', result});
+
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+};
