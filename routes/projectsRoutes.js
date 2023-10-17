@@ -33,7 +33,7 @@ function validateToken(req, res, next) {
 router.post('/', validateToken, projectController.addProject);
 router.get('/', validateToken, projectController.getAllProjects);
 router.get('/:projectId', validateToken, projectController.getProjectById);
-
+router.put('/:projectId', validateToken, projectController.updateProject);
 
 
 
