@@ -31,5 +31,6 @@ function validateToken(req, res, next) {
 
 //aquí van las rutas...
 router.post('/', validateToken, contractController.addContract);
+router.get('/', validateToken, contractController.getAllContracts);
 
 module.exports = router;

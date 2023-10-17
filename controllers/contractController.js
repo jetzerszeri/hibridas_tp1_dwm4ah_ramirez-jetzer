@@ -41,3 +41,14 @@ exports.addContract = async (req, res) => {
         res.status(500).json({message: 'Hubo un error en el servidor'});
     }
 };
+
+exports.getAllContracts = async (req, res) => {
+    try{
+        const contracts = await contractModel.find();
+        res.status(200).json({contracts});
+
+    }catch(error){
+        console.log(error);
+        res.status(500).json({message: 'Hubo un error en el servidor'});
+    }
+};
