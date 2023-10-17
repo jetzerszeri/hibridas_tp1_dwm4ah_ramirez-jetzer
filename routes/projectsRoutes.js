@@ -32,6 +32,7 @@ function validateToken(req, res, next) {
 //aquí van las rutas...
 router.post('/', validateToken, projectController.addProject);
 router.get('/', validateToken, projectController.getAllProjects);
+router.get('/:projectId', validateToken, projectController.getProjectById);
 
 
 
