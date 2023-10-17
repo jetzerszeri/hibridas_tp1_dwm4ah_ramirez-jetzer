@@ -6,7 +6,7 @@ const clave = 'appkey'; //clave para el token, debe ir en un archivo aparte
 
 exports.addUser = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
+        const { name, email, password, role } = req.body;
 
         if (!name || name.trim().length === 0 || name.length < 3) {
             return res.status(400).json({ message: 'Nombre no válido' });
@@ -22,6 +22,10 @@ exports.addUser = async (req, res) => {
             return res.status(400).json({ message: 'Contraseña no válida' });
         }
 
+        if (!role || role !== 'admin' && role !== 'contractor' && role !== 'pm') {
+            return res.status(400).json({ message: 'Rol no válido' });
+        }
+
 
 
         const passwordHash = await bcrypt.hash(password, salt);
@@ -29,7 +33,8 @@ exports.addUser = async (req, res) => {
         const user = new userModel({
             name,
             email,
-            password: passwordHash
+            password: passwordHash,
+            role
         });
 
         await user.save();

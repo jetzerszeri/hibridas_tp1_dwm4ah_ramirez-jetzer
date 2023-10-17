@@ -14,7 +14,7 @@ function validateToken(req, res, next) {
         token = token.split(' ')[1];
     }
 
-    console.log(token);
+    // console.log(token);
 
     jwt.verify(token, clave, (error, decoded) => {
         if (error) {
@@ -32,7 +32,7 @@ function validateToken(req, res, next) {
 
 //aquí van las rutas...
 
-
+router.post('/', validateToken, vendorController.addVendor);
 
 
 module.exports = router;
